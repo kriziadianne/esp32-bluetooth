@@ -1,0 +1,39 @@
+{% extends "layout_log.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+   <div class="jumbotron" style="background-color: #A9E2F3; margin-left: 20%; margin-top: 8%; margin-bottom: 30%;  width: 100%">
+    <h1>Complete your profile</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div>
+          <input type="email" class="form-control" name="email" placeholder="Full Name" required="" />
+        </div>
+        <div>
+          <input type="password" class="form-control" name="pass" placeholder="Address" required="" />
+        </div>
+        <div>
+          Age: <input type="number" name="age" value="">
+        <div>
+          Gender:<select name="gender">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+        </div>
+        <div>
+          Birth Date <input type="datetime-local" name="birthDate">
+        </div>
+        <div>
+          Educational Attainment: <input type="text" class="form-control" name="edu" placeholder="Educational Attainment" required="" />
+        </div>
+        <div>
+          Professional/Government ID: <input type="text" class="form-control" name="governmentID" placeholder="Professional/Government ID #" required="" />
+        </div>
+
+        <input type="submit" value="Update" class="btn btn-default">
+        <button type="reset" value="Reset">Reset</button>
+    </form>
+</div>
+
+{% endblock %}

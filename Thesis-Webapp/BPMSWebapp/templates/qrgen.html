@@ -1,0 +1,23 @@
+{% extends "layout_log.html" %}
+{% load bootstrap4 %}
+{% load qr_tags %}
+{% block content %}
+
+<h1>Pairing BP Device with Patient : {{f.firstname}} {{f.lastName}}</h1>
+{% qr_from_text q "s" %}
+
+
+
+
+<br>
+<br><br><br><br>
+<div class="container">
+	<div class="form-group row text-center">
+		<div class="col">
+			<a href="{% url 'dash' %}"><button type="submit" value="Done" class="btn btn-primary">Done</button>
+		</div>
+	</div>
+	
+</div>
+
+{% endblock %}

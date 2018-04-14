@@ -1,0 +1,110 @@
+{% extends "layout_log.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+
+    <div class="col-md-4">
+      <div class="card" style="width:75%; margin-left: 15%; margin-top: 11%">
+        <img class="card-img-top" src="{% static 'images/landing/avatar-cat.png'%}" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <h4 class="card-title"> Cat </h4>
+          <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#firstModal"> Click Me </button>
+
+          <!-- The Modal -->
+          <div class="modal fade" id="firstModal">
+            <div class="modal-dialog modal-lg" style="margin-top: 10%">
+              <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title"> Cat </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                I am a cat
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+
+              </div> <!-- modal content -->
+            </div> <!-- modal dialog -->
+          </div> <!-- modal -->
+        </div> <!-- card body -->
+      </div> <!-- card -->
+    </div> <!-- col-md-4 -->
+
+    <div class="col-md-4">
+      <div class="card" style="width:75%; margin-left: 11%; margin-top: 11%">
+        <img class="card-img-top" src="{% static 'images/landing/avatar-dog.png'%}" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <h4 class="card-title"> Dog </h4>
+          <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#secondModal"> Click Me </button>
+
+          <!-- The Modal -->
+          <div class="modal fade" id="secondModal">
+            <div class="modal-dialog modal-lg" style="margin-top: 10%">
+              <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title"> Dog </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                I am a dog
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+
+              </div> <!-- modal content -->
+            </div> <!-- modal dialog -->
+          </div> <!-- modal -->
+        </div> <!-- card body -->
+      </div> <!-- card -->
+    </div> <!-- col-md-4 -->
+
+    <div class="col-md-4">
+      <div class="card" style="width:75%; margin-left: 11%; margin-top: 11%">
+        <img class="card-img-top" src="{% static 'images/landing/avatar-pig.png'%}" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <h4 class="card-title"> Pig </h4>
+          <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#thirdModal"> Click Me </button>
+
+          <!-- The Modal -->
+          <div class="modal fade" id="thirdModal">
+            <div class="modal-dialog modal-lg" style="margin-top: 10%">
+              <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title"> Pig </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                I am a pig
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+
+              </div> <!-- modal content -->
+            </div> <!-- modal dialog -->
+          </div> <!-- modal -->
+        </div> <!-- card body -->
+      </div> <!-- card -->
+    </div> <!-- col-md-4 -->
+
+  </div> <!-- row -->
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+{% endblock %}

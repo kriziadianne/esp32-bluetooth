@@ -1,0 +1,92 @@
+{% if m %}
+<script>
+    alert('{{ m }}');
+</script>
+{% endif %}
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <title>BP WEB!</title>
+  </head>
+  <body>
+  <div class="container-fluid">
+  <div class="row justify-content-around">
+  <nav class="navbar navbar-expand-sm navbar-light">
+    
+      <div class="col">
+        <a class="navbar-brand mynav" href="{% url 'dash' %}">
+          <img src="{% static '/images/landing/logo.png'%}" alt="Ooops! No file found. " class="img-fluid" height="25%" width="25%">
+        </a>
+      </div>
+      <div class="col-offset-4">
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+              <li><a href="{% url 'dash' %}" class="nav-link">Dashboard</a></li>
+              <li><a href="{% url 'notif' %}" class="nav-link">Notifications</a></li>
+              <!-- <li><a href="#" class="nav-link">About</a></li> -->
+              <li><a href="{% url 'log' %}" class="nav-link">Log-out</a></li>
+        </ul>
+       <!--  <div class="col">
+        <h5 class="h5 text-right">Welcome, {{ n }}!</h5>
+      </div> -->
+      </div>
+  
+    
+  </nav>
+</div>
+<!-- <div class="row justify-content-around">
+      
+      <div class="col-7">
+      </div>
+      <div class="col">
+        <h5 class="h5 text-right">Welcome, {{ n }}!</h5>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+</div> -->
+  
+  
+  <!-- <div class="row">
+    <div class="col">
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand mynav" href="{% url 'home_log' %}">
+        <img src="{% static '/images/landing/bp_logo.png'%}" alt="Ooops! No file found. " height="40" width="60">
+        BPWEB
+      </a>
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+              <li><a href="{% url 'dash' %}" class="nav-link">Dashboard</a></li>
+              <li><a href="{% url 'notif' %}" class="nav-link">Notifications</a></li>
+              <li><a href="#">About</a></li>
+              <li><h4>Welcome, {{ e }}!</h4></li>
+              <li><a href="{% url 'log' %}" class="nav-link">Log out</a></li>
+
+
+
+
+        </ul>
+
+
+
+    </div>
+    </nav>
+  </div>
+  </div> -->
+  <div class="container mycontent">
+    {% block content %}
+
+    {% endblock %}
+
+  </div>
+
+  </body>
+</html>

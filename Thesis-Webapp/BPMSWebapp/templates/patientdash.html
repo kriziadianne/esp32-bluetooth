@@ -1,0 +1,280 @@
+{% extends "layout_log.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block content %}
+<!-- #235789 -->
+<script type="text/javascript" src="{% static 'fusioncharts/js/fusioncharts.js' %}"></script>
+<script type="text/javascript" src="{% static 'fusioncharts/js/fusioncharts.charts.js' %}"></script>
+<script type="text/javascript" src="{% static 'fusioncharts/js/themes/fusioncharts.theme.fint.js' %}"></script>
+<style>
+  a{
+   color:black;
+  }
+</style>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+<script src="{% static 'assets/scripts/app.js' %}"></script>
+<script>
+  window.addEventListener("load", getData(genFunction));
+
+  function getData(callbackIN) {
+    var ref = firebase.database().ref("users/data/{{s}}/{{d}}/BPdata/");
+    ref.on('value', function (snapshot) {
+      callbackIN(snapshot.val())
+    });
+  }
+  function myFunction() {
+    var x = document.getElementById("notice");
+    var y = document.getElementById("myTable");
+    var z = document.getElementById("chart-container");
+    if (z.style.display === "none") {
+        z.style.display = "block";
+        x.style.display = "block";
+//        y.style.display = "none";
+    } else {
+        x.style.display = "none";
+        z.style.display = "none";
+//        y.style.display = "block";
+
+    }
+}
+
+function myFunction1() {
+  var x = document.getElementById("myTable");
+  if (x.style.display === "none") {
+      x.style.display = "block";
+  } else {
+      x.style.display = "none";
+
+  }
+}
+
+
+  function genFunction(data) {
+    console.log(data);
+    var cdata = [];
+    var cdata1 = [];
+    var len = data.length;
+    for(var i=1; i<len; i++) {
+      cdata.push({
+        label: data[i]['dias'],
+        value: data[i]['syst']
+      });
+
+    }
+    var firebaseChart = new FusionCharts({
+      type: 'realtimeline',
+      renderAt: 'chart-container',
+      width: '480',
+      height: '300',
+      dataFormat: 'json',
+      dataSource: {
+  "chart": {
+      "caption": "Patient",
+      "subCaption": "Real Time Database",
+      "xAxisName": "Time",
+      "yAxisName": "BP DATA",
+      "clearChartInterval": "10",
+      "refreshInterval": "5",
+      "yaxisminvalue": "50",
+      "yaxismaxvalue": "200",
+      "numDisplaySets": "10",
+      "labeldisplay": "rotate",
+
+      "bgColor": "#ff0000,#ffff00,#00ff00",
+      "canvasBgColor": "#ff0000,#ffff00,#00ff00",
+      "canvasBgAngle": "90",
+      "canvasBgRatio": "25,25,25",
+      "bgAlpha": "70,80",
+      "showValues": "0",
+      "showRealTimeValue": "0",
+      "theme": "fint"
+  },
+  "categories": [
+      {
+          "category": cdata
+      }
+  ],
+  "dataset": [
+      {
+          "data": cdata
+      }]
+
+},
+
+  });
+  firebaseChart.render();
+  for(var o=1; o<len; o++) {
+    cdata1.push({
+      label: data[o]['dias'],
+      value: data[o]['syst']
+    });
+
+  }
+  }
+</script>
+
+<br>
+<div class="container">
+  <div class="row"></div>
+  <div class="row">
+    <div class="col-6" style="box-shadow: 3px 3px 15px 3px  #e2d9d9; background-color: #fcfcff; border-radius: 15px">
+    <br>
+    <div class="row float-right " style="padding-right: 5%; margin-bottom: 0px;">
+        <div class="col">
+          <a href="{% url 'uppat' %}">
+          <i class="fas fa-edit"></i>
+          </a>
+        </div>
+        <p>Edit</p>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <br>
+            {% if p %}
+            <img src="{{p.0}}" class="rounded " alt="profile picture" height="150px" width="150px" style="border-radius: 100%; ">
+            {% else %}
+            <img src="{% static '/images/user/user.png' %}" class="rounded" alt="profile picture" height="150px" width="150px" style="border-radius: 100%;">
+            {% endif %}
+            <br>
+        </div>
+      </div>
+
+      <br>
+      <div class="row align-self-center ">
+        <div class="col">
+          <br><h3 class="text-center" >{{da.1.lastName}}, {{da.1.firstname}}</h3>
+          <br>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-md-center">
+        <div class="col-8">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td><i class="fas fa-envelope"></i></td><td>{{da.2}}</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fas fa-address-book"></i></td><td>{{da.3}}</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fas fa-transgender"></i></td><td>{{da.0}}</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fas fa-birthday-cake"></i></td><td>{{da.5}}</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fas fa-map-marker"></i></td><td>{{da.6}}</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fas fa-tint"></i></td><td>{{da.4}}</td>
+
+                  </tr>
+                </tbody>
+
+              </table>
+
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="col-6">
+      <div class="row justify-content-center">
+        <div class="col-6 align-self-center">
+          <a href="{% url 'inpFCred' %}" >
+            <div class="card" style="box-shadow: 3px 3px 15px 3px  #e2d9d9; background-color: #fcfcff; border-radius: 5px">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <i class="fas fa-envelope" style="width: 50px; height: 50px;"></i>
+                </div>
+                <a href="{% url 'contact' %}">
+                <div class="col-12">
+                  <h4 class="lead">Contact!</h4>
+                </div>
+              </div>
+              <a>
+          </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 align-self-center">
+           <a href="{% url 'chart' %}" >
+            <div class="card" style="box-shadow: 3px 3px 15px 3px  #e2d9d9; background-color: #fcfcff; border-radius: 5px">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <i class="fas fa-exchange-alt" style="width: 50px; height: 50px;"></i>
+                </div>
+                <div class="col-8">
+                  <h4 class="lead">Switch Graph</h4>
+                </div>
+              </div>
+          </div>
+          </div>
+          </a>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="card" style="box-shadow: 3px 3px 15px 3px  #e2d9d9; background-color: #fcfcff; border-radius: 5px">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2">
+                <i class="fas fa-chart-line" style="width: 50px; height: 50px;"></i>
+              </div>
+              <div class="col-10">
+                <h4 class="lead">Chart</h4>
+              </div>
+            </div>
+            <div class="row">
+              <br>
+              <div class="col">
+                <button onclick="myFunction()">Show Chart</button>
+
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                   <div id="chart-container" style="display:none;"><svg width="90px"  height="90px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none; " ><circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#6ac1a5" stroke-width="9" r="33" stroke-dasharray="155.50883635269477 53.83627878423159" transform="rotate(324 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg></div>
+                   <div id="notice" style="display:none;"><h3>If you keep seeing the loading symbol after 5secs, there is no data currently in this patient.</h3></div>
+                  </tr>
+
+                </tbody>
+
+              </table>
+            </div>
+              <table id="myTable" style="display:none;">
+                <tr>
+                  <td> dias/syst </td>
+                </tr>
+                {% for x in q %}
+                <tr>
+                  <td>{{x}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+        </div>
+            </div>
+
+
+        </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- <div class="col-3" style="background-color: red; border-radius: 15px">
+      something
+    </div> -->
+  </div>
+</div>
+
+{% endblock %}

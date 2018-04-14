@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+{% load staticfiles %}
+<head>
+  <title>Real Time Data Of Patient</title>
+  <!-- including FusionCharts core package JS files -->
+
+<script type="text/javascript" src="{% static 'fusioncharts/js/fusioncharts.js' %}"></script>
+<script type="text/javascript" src="{% static 'fusioncharts/js/fusioncharts.charts.js' %}"></script>
+<script type="text/javascript" src="{% static 'fusioncharts/js/themes/fusioncharts.theme.fint.js' %}"></script>
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+  <!-- including Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+  <script src="{% static 'assets/scripts/app.js' %}"></script>
+  <script>
+    window.addEventListener("load", getData(genFunction));
+    window.addEventListener("load", getData(genFunction1));
+
+    function getData(callbackIN) {
+      var ref = firebase.database().ref("users/data/{{s}}/{{d}}/BPdata/");
+      ref.on('value', function (snapshot) {
+        callbackIN(snapshot.val())
+      });
+    }
+    function genFunction(data) {
+      console.log(data);
+      var cdata = [];
+      var len = data.length;
+      for(var i=1; i<len; i++) {
+        cdata.push({
+          label: data[i],
+          value: data[i]['syst']
+        });
+
+      }
+      var firebaseChart = new FusionCharts({
+        type: 'realtimeline',
+        renderAt: 'chart-container',
+        width: '650',
+        height: '400',
+        dataFormat: 'json',
+        dataSource: {
+          "caption": "Systolic Blood Pressure",
+          "subCaption": "Real Time Database",
+          "xAxisName": "Time",
+          "yAxisName": "BP DATA",
+          "clearChartInterval": "10",
+          "refreshInterval": "5",
+          "yaxisminvalue": "50",
+          "yaxismaxvalue": "200",
+          "numDisplaySets": "10",
+          "labeldisplay": "rotate",
+
+          "bgColor": "#ff0000,#ffff00,#00ff00",
+          "canvasBgColor": "#ff0000,#ffff00,#00ff00",
+          "canvasBgAngle": "90",
+          "canvasBgRatio": "25,25,25",
+          "bgAlpha": "70,80",
+          "showValues": "0",
+          "showRealTimeValue": "0",
+          "theme": "fint"
+    },
+    "categories": [
+        {
+            "category": cdata
+        }
+    ],
+    "dataset": [
+        {
+            "data": cdata
+        }]
+
+},
+
+    });
+    firebaseChart.render();
+    }
+    function genFunction1(data) {
+      console.log(data);
+      var cdata = [];
+      var len = data.length;
+      for(var i=1; i<len; i++) {
+        cdata.push({
+          label: data[i],
+          value: data[i]['dias']
+        });
+
+      }
+      var firebaseChart1 = new FusionCharts({
+        type: 'realtimeline',
+        renderAt: 'chart-container1',
+        width: '650',
+        height: '400',
+        dataFormat: 'json',
+        dataSource: {
+    "chart": {
+      "caption": "Diastolic Pressure",
+      "subCaption": "Real Time Database",
+      "xAxisName": "Time",
+      "yAxisName": "BP DATA",
+      "clearChartInterval": "10",
+      "refreshInterval": "5",
+      "yaxisminvalue": "50",
+      "yaxismaxvalue": "200",
+      "numDisplaySets": "10",
+      "labeldisplay": "rotate",
+
+      "bgColor": "#ff0000,#ffff00,#00ff00",
+      "canvasBgColor": "#ff0000,#ffff00,#00ff00",
+      "canvasBgAngle": "90",
+      "canvasBgRatio": "25,25,25",
+      "bgAlpha": "70,80",
+      "showValues": "0",
+      "showRealTimeValue": "0",
+      "theme": "fint"
+    },
+    "categories": [
+        {
+            "category": cdata
+        }
+    ],
+    "dataset": [
+        {
+            "data": cdata
+        }]
+
+},
+
+    });
+    firebaseChart1.render();
+    }
+  </script>
+</head>
+
+<body>
+  <h2>If you keep seeing the loading symbol after 5secs, there is no data currently in this patient.</h2>
+  <div id="chart-container"><svg width="90px"  height="90px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#6ac1a5" stroke-width="9" r="33" stroke-dasharray="155.50883635269477 53.83627878423159" transform="rotate(324 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg></div>
+  ----------- ---------- ----------- ----------- ----------- ---------- ---------- ---------- ---------<br>
+  <div id="chart-container1"><svg width="90px"  height="90px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#6ac1a5" stroke-width="9" r="33" stroke-dasharray="155.50883635269477 53.83627878423159" transform="rotate(324 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg></div>
+</body>
+
+</html>

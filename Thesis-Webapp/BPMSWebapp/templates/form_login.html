@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container">
+  <br><br><br><br><br><br>
+  <div class="row justify-content-md-center">
+    <div class="col-6" style="box-shadow: 5px 5px 38px 5px  #e2d9d9; border-radius: 15px">
+      <div class="row align-items-center">
+        <div class="col"></div>
+        <div class="col text-center">
+          <br>
+            <img src="{% static '/images/landing/login.png'%}" alt="Ooops! No file found. " class="img-fluid" height="90%" width="90%">
+          <br><br>
+        </div>
+        <div class="col"></div>
+        
+      </div>
+      <form class="needs-validation" novalidate method ="post" action="SignIn">
+        {% csrf_token %}
+        <div class="form-group row">
+          <div class="col">
+            <input type="email" class="form-control" name="email" id="validationTooltip01" placeholder="Email" required="" />
+            <div class="invalid-tooltip">
+              Please input valid e-mail address.
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col">
+            <input type="password" class="form-control" name="pass" id="validationTooltip02" placeholder="Password" required="" />
+            <div class="invalid-tooltip">
+              Please input password.
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-row text-center">
+          <div class="col">
+            <button type="submit" name="signin" class="btn btn-primary submit">Login</button>
+            <br><br><br>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>      
+    </div>
+  </div>
+</div>
+<!-- <div class="row">
+  <div class="col-md-8">
+   <div class="jumbotron" style="background-color: #A9E2F3; margin-left: 45%; margin-top: 8%; margin-bottom: 30%;  width: 60%">
+    <h1>Login</h1>
+    <form method ="post" action="SignIn">
+      {% csrf_token %}
+      <div>
+        <input type="email" class="form-control" name="email" placeholder="Email" required="" />
+      </div>
+      <div>
+        <input type="password" class="form-control" name="pass" placeholder="Password" required="" />
+      </div>
+      <div>
+          <button type="submit" name="signin" class="btn btn-default submit">Login</button><br>
+      </div>
+      </form>
+</div>
+</div>
+</div> -->
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+{% endblock %}

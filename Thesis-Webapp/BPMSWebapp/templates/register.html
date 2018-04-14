@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-12" style="box-shadow: 5px 5px 38px 5px  #e2d9d9; border-radius: 15px">
+      <div class="row">
+        <div class="col text-center">
+          <br>
+            <img src="{% static '/images/landing/login.png'%}" alt="Ooops! No file found. " class="img-fluid" height="8%" width="8%">
+          <br><br>
+        </div>
+
+
+      </div>
+      <form action="signuppost form-inline"  method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+        <fieldset>
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10">
+          <div class="form-group row">
+          <div class="col-4">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="firstName validationTooltip02" placeholder="First Name" required="" />
+            <div class="invalid-tooltip">
+              Please input First Name.
+            </div>
+<!--             <label for="famName">Family Name</label>
+            <input type="text" class="form-control" name="famName" id="famName validationTooltip01" placeholder="Family Name" required="" />
+            <div class="invalid-tooltip">
+              Please input Family Name.
+            </div> -->
+
+          </div>
+          <div class="col-3">
+            <label for="famName">Family Name</label>
+            <input type="text" class="form-control" name="famName" id="famName validationTooltip01" placeholder="Family Name" required="" />
+            <div class="invalid-tooltip">
+              Please input Family Name.
+            </div>
+<!--             <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="firstName validationTooltip02" placeholder="First Name" required="" />
+            <div class="invalid-tooltip">
+              Please input First Name.
+            </div> -->
+          </div>
+          <div class="col-2">
+            <label for="gender">Gender</label>
+            <select class="custom-select form-control" name="gender" id="validationTooltip06" required="">
+              <option selected>Gender</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+            <div class="invalid-tooltip">
+              Please input gender.
+            </div>
+          </div>
+          <div class="col-3">
+            <label for="birthdate">Birthdate</label>
+            <input type="date" class="form-control bfh-datepicker" data-min="01/01/1930" data-max="today" name="birthdate" id="validationTooltip07" placeholder="Birthday" required="" />
+            <div class="invalid-tooltip">
+              Please input birthday.
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-6">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" name="email" id="validationTooltip03" placeholder="Email" required="" />
+            <div class="invalid-tooltip">
+              Please input valid e-mail address.
+            </div>
+          </div>
+          <div class="col-3">
+              <label for="password">Create Password</label>
+            <input type="password" class="form-control" onkeyup='check();' name="password" id=" password validationTooltip04" required="" />
+            <div>
+              <span id='message'></span>
+            </div>
+            <div class="invalid-tooltip">
+              Please input password.
+            </div>
+
+
+          </div>
+          <div class="col-3">
+            <label for="conf_password">Confirm Password</label>
+            <input type="password" class="form-control" name="conf_password" onkeyup='check();' id=" conf_password validationTooltip05" required="">
+            <div>
+              <span id='message'></span>
+            </div>
+            <div class="invalid-tooltip">
+              Please input password.
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+              <label for="mobileNum">Mobile Number</label>
+              <div class="input-group">
+                <div class="input-group-addon">+63</div>
+                <input type="tel" class="form-control" name="mobileNum" id="mobileNum validationTooltip08" placeholder="XXXXXXXXXX" maxlength='10' pattern="[0-9]{10}" required="">
+              </div>
+            </div>
+            <div class="col-8">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" name="address" id="address validationTooltip09" required="" />
+              <div class="invalid-tooltip">
+                Please input address.
+              </div>
+            </div>
+            <div class="invalid-tooltip">
+              Please input number
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="container">
+              <label for="MS">Medical Specializations</label>
+              <div class="col">
+                <div class="col">
+                  <div class="row">
+                    <div class="col-4">
+                    <div class="form-check">
+                      <input class="form-check-input" name="MS" type="checkbox" value="Anesthesia" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Anesthesia
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" name="MS" type="checkbox" value="Dermatology" id="defaultCheck2">
+                      <label class="form-check-label" for="defaultCheck2">
+                        Dermatology
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" name="MS" type="checkbox" value="Emergency Medicine" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Emergency Medicine
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" name="MS" type="checkbox" value="Family Medicine" id="defaultCheck2">
+                      <label class="form-check-label" for="defaultCheck2">
+                        Family Medicine
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" name="MS" type="checkbox" value="General Surgery" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        General Surgery
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" name="MS" type="checkbox" value="Internal Medicine" id="defaultCheck2">
+                      <label class="form-check-label" for="defaultCheck2">
+                        Internal Medicine
+                      </label>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                   <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Neurology" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Neurology
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Nuclear Medicine" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                      Nuclear Medicine
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Obstetrics And Gynecology" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Obstetrics And Gynecology
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Occupational Medicine" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                      Occupational Medicine
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Ophthalmology" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Ophthalmology
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Orthopedics" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                      Orthopedics
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Cardiologist" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Cardiologist
+                    </label>
+                  </div>
+
+                </div>
+                <div class="col-4">
+                   <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Otorhinolaryngology" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Otorhinolaryngology
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Pathology" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                      Pathology
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Pediatrics" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Pediatrics
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Physical And Rehabilitation Medicine" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                      Physical And Rehabilitation Medicine
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Psychiatry" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Psychiatry
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="MS" type="checkbox" value="Radiology" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                      Radiology
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+              <label for="address">License Number</label>
+              <input type="text" class="form-control" name="lNum" id="lNum validationTooltip10" required="" />
+              <div class="invalid-tooltip">
+                Please input License Number.
+              </div>
+            </div>
+            <div class="invalid-tooltip">
+              Please input number
+            </div>
+        </div>
+          <div class="row text-center">
+            <div class="col"></div>
+          <div class="col ">
+            <button type="submit" value="Signup" class="btn btn-primary pure-button pure-button-primary">SignUp! </button>
+            <button type="reset" value="Reset" class="btn btn-primary">Reset</button>
+            <br><br>
+          </div>
+          <div class="col"></div>
+
+
+
+          </div>
+          <div class="col-1"></div>
+
+        </div>
+        </div>
+
+
+        </div>
+
+        </fieldset>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+ var password = document.getElementById("password")
+  , confirm_password = document.getElementById("conf_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
+</script>
+{% endblock %}

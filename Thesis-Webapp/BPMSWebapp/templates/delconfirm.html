@@ -1,0 +1,23 @@
+{% extends "layout_log.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+<div class="row">
+  <div class="col-md-8">
+   <div class="jumbotron" style="background-color: #A9E2F3; margin-left: 20%; margin-top: 8%; margin-bottom: 30%;  width: 100%">
+    <h1>Deleting Patient</h1>
+    <form action="deleted"  method="post">
+    {% csrf_token %}
+    <div id="wrapper">
+      <label for="yes_no_radio">Do you agree to the terms?</label>
+      <p>
+        <input type="radio" name="yes_no">Yes</input>
+      </p>
+      <p>
+        <input type="radio" name="yes_no" checked>No</input>
+      </p>
+    </div>
+</form>
+</div>
+{% endblock %}

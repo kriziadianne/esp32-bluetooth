@@ -1,0 +1,45 @@
+{% extends "layout_log.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block content %}
+
+<br>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-12" style="box-shadow: 5px 5px 38px 5px  #e2d9d9; border-radius: 15px">
+      <div class="row">
+        <div class="col text-center">
+          <br>
+            <img src="{% static '/images/landing/login.png'%}" alt="Ooops! No file found. " class="img-fluid" height="8%" width="8%">
+          <br><br>
+        </div>
+
+      </div>
+      <form action="{% url 'contactsucc' %}"  method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10">
+            <div class="form-group row">
+              <div class="col">
+              <label for="famName">Message</label>
+              <input type="text" class="form-control input-lg" name="noww" id="famName validationTooltip01" value="Please contact your doctor as soon as possible! " required="" />
+              <div class="invalid-tooltip">
+                Please input your message.
+              </div>
+              <br>
+              <div class="col text-center ">
+                <button type="submit" class="btn btn-primary pure-button pure-button-primary">Submit </button>
+                <button type="reset" value="Reset" class="btn btn-primary">Reset</button>
+                <br><br>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+<br><br>
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			<p class="display-2">Verify your email address</p>
+			
+			<h4 class="text-muted">
+				You're almost done! A verification message has been sent to
+			</h4>
+			<br>
+			<h5>
+				<strong>
+					{{ e }}
+				</strong>
+			</h5>
+			<br><br>
+			<h5 class="text-muted">
+				Just check your email and follow the link to finish creating your account
+			</h5>
+
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

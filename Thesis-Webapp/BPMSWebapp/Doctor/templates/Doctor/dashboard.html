@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .bc-header {
+      background-color: rgb(0,176,240);
+      height: 100px;
+      padding-top: 70px;
+    }
+    .doc-notif {
+      background-color: rgb(222,235,247);
+      height: 597px;
+    }
+    .a {
+    color: #FFFFFF;
+    }
+
+  </style>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="images/register/profpic.png" class="rounded float-left" alt="profile picture" height="150px" width="150px" style="margin-top: 10%; margin-left: 10%">
+          </div>
+
+          <div class="col-md-6">
+            <ul class="list-unstyled" style="margin-top: 10%">
+              <li> {{ user.full_name }} </li>
+              <li> Doctor of Internal Medicine </li>
+              <li> {{ user.docprofile.address1 }} </li>
+              <li> Age: 54 </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12" style="margin-top: 2%; margin-left: 8%">
+            <button class="btn btn-default"><a href="{% url 'profileacc:update'%}"> Edit Profile </button>
+          </div>
+        </div>
+
+        <div class="row pt-4" style="margin-top: 5%">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-info" style="width: 100%"> <a href="{% url 'patient:pregister' %}"> Add Patient </a> </button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-info" style="width: 100%"> <a href="{% url 'patient:pdash' %}"> Patient Dashboard </a> </button>
+
+           <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+              <div class="modal-dialog modal-lg" style="margin-top: 10%">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title"> Dog </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    I am a dog
+                  </div>
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div> <!-- modal content -->
+              </div> <!-- modal dialog -->
+            </div> <!-- modal -->
+          </div>
+        </div> <!-- end of row pt-4 -->
+      </div> <!-- end of first column -->
+
+      <div class="col-md-6 doc-notif">
+
+        <div class="card" style="margin-top: 5%">
+          <div class="card-body"> <a href="#"> HELLO </a></div>
+        </div>
+        <br>
+        <div class="card">
+          <div class="card-body"> <a href="#"> HI </a></div>
+        </div>
+        <br>
+        <div class="card">
+          <div class="card-body"> <a href="dummypatientdash.html"> HELLO </a></div>
+        </div>
+        <br>
+        <div class="card">
+          <div class="card-body"> <a href="dummypatientdash.html"> HI </a></div>
+        </div>
+      </div> <!-- end of second column -->
+
+      <!-- The Modal -->
+
+    </div> <!-- end of main row -->
+  </div> <!-- end of container -->
+
+{% endblock %}
